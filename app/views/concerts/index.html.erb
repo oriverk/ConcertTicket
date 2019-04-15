@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Concerts</h1>
+<h1>コンサート</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Infomation</th>
-      <th>Date</th>
+      <th>情報</th>
+      <th>公演日</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,9 +16,11 @@
       <tr>
         <td><%= concert.infomation %></td>
         <td><%= concert.date %></td>
-        <td><%= link_to 'Show', concert %></td>
-        <td><%= link_to 'Edit', edit_concert_path(concert) %></td>
-        <td><%= link_to 'Destroy', concert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '表示', concert %></td>
+        <% if current_user.admin? %>
+          <td><%= link_to '編集', edit_concert_path(concert) %></td>
+          <td><%= link_to '削除', concert, method: :delete, data: { confirm: '本当によろしいですか？' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,6 @@
 
 <br>
 
-<%= link_to 'New Concert', new_concert_path %>
+<% if current_user.admin? %>
+  <%= link_to '新規作成', new_concert_path %>
+<% end %>

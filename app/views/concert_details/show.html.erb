@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Concert:</strong>
-  <%= @concert_detail.concert %>
+  <strong>コンサート情報:</strong>
+  <%= @concert_detail.concert.infomation %>
 </p>
 
 <p>
-  <strong>Grade:</strong>
-  <%= @concert_detail.grade %>
+  <strong>席種:</strong>
+  <%= @concert_detail.grade %>席
 </p>
 
 <p>
-  <strong>Price:</strong>
-  <%= @concert_detail.price %>
+  <strong>価格:</strong>
+  <%= @concert_detail.price %>円
 </p>
 
 <p>
-  <strong>Capacity:</strong>
-  <%= @concert_detail.capacity %>
+  <strong>販売席数:</strong>
+  <%= @concert_detail.capacity %>席
 </p>
 
-<%= link_to 'Edit', edit_concert_detail_path(@concert_detail) %> |
-<%= link_to 'Back', concert_details_path %>
+<%= link_to '編集', edit_concert_detail_path(@concert_detail) %> |
+<%= link_to '戻る', concert_details_path %>

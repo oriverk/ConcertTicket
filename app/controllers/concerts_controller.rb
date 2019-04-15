@@ -6,7 +6,7 @@ class ConcertsController < ApplicationController
   # GET /concerts
   # GET /concerts.json
   def index
-    @concerts = Concert.all
+    @concerts = Concert.all.order(date: :asc)
   end
 
   # GET /concerts/1
@@ -30,7 +30,7 @@ class ConcertsController < ApplicationController
 
     respond_to do |format|
       if @concert.save
-        format.html { redirect_to @concert, notice: 'Concert was successfully created.' }
+        format.html { redirect_to @concert, notice: '新規作成しました' }
         format.json { render :show, status: :created, location: @concert }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ConcertsController < ApplicationController
   def update
     respond_to do |format|
       if @concert.update(concert_params)
-        format.html { redirect_to @concert, notice: 'Concert was successfully updated.' }
+        format.html { redirect_to @concert, notice: '更新しました' }
         format.json { render :show, status: :ok, location: @concert }
       else
         format.html { render :edit }

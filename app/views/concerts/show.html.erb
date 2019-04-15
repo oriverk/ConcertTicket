@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Infomation:</strong>
+  <strong>コンサート情報:</strong>
   <%= @concert.infomation %>
 </p>
 
 <p>
-  <strong>Date:</strong>
+  <strong>公演日:</strong>
   <%= @concert.date %>
 </p>
 
-<%= link_to 'Edit', edit_concert_path(@concert) %> |
-<%= link_to 'Back', concerts_path %>
+<%= link_to '編集', edit_concert_path(@concert) %> |
+<%= link_to '戻る', concerts_path %>
