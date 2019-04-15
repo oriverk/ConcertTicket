@@ -1,0 +1,30 @@
+<br>
+<br>
+<br>
+<br>
+<div class= "footer">
+  <div class = "footer-main">
+    <div class = "footer-left"></div>
+      <div></div>
+      <div class = "footer-contents">
+        <%= link_to 'コンサート', concerts_path %>
+        <%= link_to 'コンサート詳細' ,concert_details_path %>
+        <% if user_signed_in? %>
+          <%= link_to 'マイページ', "#" %>
+          <%= link_to 'ログアウト', "#" %>
+          <% if current_user.admin? %>
+            <%= link_to '管理者', "#" %>
+          <% end %>
+        <% else %>
+          <%= link_to 'ログイン', "#" %>
+        <% end %>
+      </div>
+    <div class = "footer-right"></div>
+  </div>
+  <div class= "footer-bottom">
+      <div class= "footer-logo">
+        <img src="#" alt="concert-ticket">
+        <p class= "copyright">© 2019 ●●●</p>
+      </div>
+  </div>
+</div>

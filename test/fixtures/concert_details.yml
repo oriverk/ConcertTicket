@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  concert: one
+  grade: 1
+  price: 1
+  capacity: 1
+
+two:
+  concert: two
+  grade: 1
+  price: 1
+  capacity: 1

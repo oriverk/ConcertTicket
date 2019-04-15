@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Concert:</strong>
+  <%= @concert_detail.concert %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @concert_detail.grade %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @concert_detail.price %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @concert_detail.capacity %>
+</p>
+
+<%= link_to 'Edit', edit_concert_detail_path(@concert_detail) %> |
+<%= link_to 'Back', concert_details_path %>

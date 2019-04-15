@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sale: one
+  date: 2019-04-15 05:35:59
+  amount: 1
+  added_point: 1
+
+two:
+  sale: two
+  date: 2019-04-15 05:35:59
+  amount: 1
+  added_point: 1

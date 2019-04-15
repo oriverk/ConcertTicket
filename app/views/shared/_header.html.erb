@@ -1,0 +1,11 @@
+<%= link_to 'コンサート', concerts_path %>
+<%= link_to 'コンサート詳細' ,concert_details_path %>
+<% if user_signed_in? %>
+  <%= link_to 'マイページ', "#" %>
+  <%= link_to 'ログアウト', "#" %>
+  <% if current_user.admin? %>
+    <%= link_to '管理者', "#" %>
+  <% end %>
+<% else %>
+  <%= link_to 'ログイン', "#" %>
+<% end %>
