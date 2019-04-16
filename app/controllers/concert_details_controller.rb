@@ -19,8 +19,7 @@ class ConcertDetailsController < ApplicationController
   end
 
   # GET /concert_details/1/edit
-  def edit
-   end
+  def edit; end
 
   # POST /concert_details
   # POST /concert_details.json

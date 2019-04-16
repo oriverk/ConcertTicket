@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>登録情報</h1>
+
+<table class= "table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th colspan="3">
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if current_user.admin? %>
+      <% @users.each do |user| %>
+        <tr>
+          <th><%= user.name %></th>
+          <th><%= user.email %></th>
+          <td><%= link_to "購入/決済情報", "#" , class:"btn btn-outline-primary" %>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <th><%= @user.name %></th>
+        <th><%= @user.email %></th>
+        <td><%= link_to '登録情報変更', "#" , class:"btn btn-outline-info" %></td>
+          <td><%= link_to "パスワード変更", "#" , class:"btn btn-outline-info" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+
+<% unless current_user.admin? %>
+<h4>購入情報</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>コンサート</th>
+      <th>開催日</th>
+      <th>席種</th>
+      <th>席数</th>
+      <th>決済期限日</th>
+      <th>支払額</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%=  %></td>
+        <td><%=  %></td>
+        <td><%=  %></td>
+        <td><%=  %></td>
+        <td><%=  %></td>
+        <td><%=  %></td>
+      </tr>
+  </tbody>
+</table>
+<% end %>

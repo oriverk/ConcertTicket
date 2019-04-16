@@ -2,8 +2,8 @@
 
 <h1>コンサート</h1>
 
-<table>
-  <thead>
+<table class= "table table-hover">
+  <thead class="thead-light">
     <tr>
       <th>情報</th>
       <th>公演日</th>
@@ -16,10 +16,10 @@
       <tr>
         <td><%= concert.infomation %></td>
         <td><%= concert.date %></td>
-        <td><%= link_to '表示', concert %></td>
+        <td><%= link_to '詳細/申込', concert , class:"btn btn-outline-primary"%></td>
         <% if current_user.admin? %>
-          <td><%= link_to '編集', edit_concert_path(concert) %></td>
-          <td><%= link_to '削除', concert, method: :delete, data: { confirm: '本当によろしいですか？' } %></td>
+          <td><%= link_to '編集', edit_concert_path(concert) , class:"btn btn-outline-info"%></td>
+          <td><%= link_to '削除', concert, method: :delete, data: { confirm: '本当によろしいですか？' } , class:"btn btn-outline-danger"%></td>
         <% end %>
       </tr>
     <% end %>
@@ -29,5 +29,5 @@
 <br>
 
 <% if current_user.admin? %>
-  <%= link_to '新規作成', new_concert_path %>
+  <%= link_to '新規作成', new_concert_path  ,class:"btn" %>
 <% end %>

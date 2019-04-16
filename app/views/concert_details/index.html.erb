@@ -2,8 +2,8 @@
 
 <h1>コンサート詳細</h1>
 
-<table>
-  <thead>
+<table class= "table table-hover">
+  <thead class="thead-light">
     <tr>
       <th>コンサート</th>
       <th>席種</th>
@@ -20,10 +20,10 @@
         <td><%= concert_detail.grade %></td>
         <td><%= concert_detail.price %>円</td>
         <td><%= concert_detail.capacity %>席</td>
-        <td><%= link_to '詳細', concert_detail %></td>
+        <td><%= link_to '詳細', concert_detail , class:"btn btn-outline-primary"%></td>
         <% if current_user.admin? %>
-          <td><%= link_to '編集', edit_concert_detail_path(concert_detail) %></td>
-          <td><%= link_to '削除', concert_detail, method: :delete, data: { confirm: '本当によろしいですか？' } %></td>
+          <td><%= link_to '編集', edit_concert_detail_path(concert_detail) , class:"btn btn-outline-info"%></td>
+          <td><%= link_to '削除', concert_detail, method: :delete, data: { confirm: '本当によろしいですか？' } , class:"btn btn-outline-danger"%></td>
         <% end %>
       </tr>
     <% end %>
@@ -33,5 +33,5 @@
 <br>
 
 <% if current_user.admin? %>
-  <%= link_to '新規コンサート追加', new_concert_detail_path %>
+  <%= link_to '新規コンサート追加', new_concert_detail_path  ,class:"btn" %>
 <% end %>

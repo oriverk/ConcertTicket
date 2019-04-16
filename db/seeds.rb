@@ -40,8 +40,8 @@ artists = []
     # seat_price S > A > B
     # prices = [price_s , price_a , price_b]
     # capacity= [sの席数、aの席数、bの席数]
-    prices = [[40_000, 35_000, 30_000], [28_000, 25_000, 23_000, 19_000], [18_000, 15_000, 13_000, 11_000, 9000]]
-    capacity = [rand(10..50), rand(100..500), rand(500..1000)]
-    ConcertDetail.create!(concert: concert, grade: i, price: prices[i].sample, capacity: capacity[i - 1])
+    prices = [[40000, 35000, 30_000], [28000, 25000, 23000, 19000], [18000, 15000, 13000, 11000, 9000]]
+    capacity = [Random.rand(50..100), Random.rand(100..500), Random.rand(500..1000)]
+    ConcertDetail.create!(concert: concert, grade: i, price: prices[i].sample, capacity: capacity[i])
   end
 end
