@@ -1,11 +1,10 @@
 <%= link_to 'コンサート', concerts_path %>
-<%= link_to 'コンサート詳細' ,concert_details_path %>
 <% if user_signed_in? %>
   <%= link_to 'マイページ',  users_path %>
-  <%= link_to 'ログアウト', "#" %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   <% if current_user.admin? %>
     <%= link_to '管理者', admins_path %>
   <% end %>
 <% else %>
-  <%= link_to 'ログイン', "#" %>
+  <%= link_to 'ログイン', 'users/sign_in' %>
 <% end %>
