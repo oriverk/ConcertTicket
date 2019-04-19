@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :concert_details
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :admins
+  resources :sales
+  
 end

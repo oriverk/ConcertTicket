@@ -2,26 +2,21 @@
 
 class ConcertsController < ApplicationController
   before_action :set_concert, only: %i[show edit update destroy]
-  # GET /concerts
-  # GET /concerts.json
+  before_action :set_concert_detail, only: %i[show edit update destroy]
+  
   def index
     @concerts = Concert.all.order(:date, :id)
   end
 
-  # GET /concerts/1
-  # GET /concerts/1.json
-  def show; end
+  def show
+  end
 
-  # GET /concerts/new
   def new
     @concert = Concert.new
   end
 
-  # GET /concerts/1/edit
   def edit; end
 
-  # POST /concerts
-  # POST /concerts.json
   def create
     @concert = Concert.new(concert_params)
 
@@ -36,10 +31,7 @@ class ConcertsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /concerts/1
-  # PATCH/PUT /concerts/1.json
   def update
-    # for concert
     respond_to do |format|
       if @concert.update(concert_params)
         format.html { redirect_to @concert, notice: '更新しました' }
@@ -51,8 +43,6 @@ class ConcertsController < ApplicationController
     end
   end
 
-  # DELETE /concerts/1
-  # DELETE /concerts/1.json
   def destroy
     @concert.destroy
     respond_to do |format|
@@ -66,7 +56,10 @@ class ConcertsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_concert
     @concert = Concert.find(params[:id])
-    @details = ConcertDetail.where(concert: params[:id])
+  end
+
+  def set_concert_detail
+    @concert_details = ConcertDetail.where(concert: params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
