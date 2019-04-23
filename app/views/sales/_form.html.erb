@@ -1,27 +1,21 @@
-<%= form_with(model: @sale, local: true) do |form| %>
+<%= form_with(model:@sale , local: true) do |form| %>
   <% if concert.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this concert from being saved:</h2>
+      <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this concert from being saved:</h2>
 
       <ul>
-      <% sale.errors.full_messages.each do |message| %>
+      <% @sale.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
   
-<p>開発用</p>
-<%= current_user.id %><br>
-<%= current_user.name %><br>
-<%= @concert.infomation %><br>
-<%= @concert.date %><br>
-<%= @concert_detail.grade %>グレード<br>
-<%= @concert_detail.price %>円<br>
-<%= @concert_detail.capacity %>席<br>
- 
+  <div>コンサートID:<%= @concert.id %></div>
+  <div>コンサート詳細ID:<%= @concert_detail.id %></div>
 
-  <%= hidden_field_tag :concert_detail_id, @concert_detail.id %>
+  <%= form.hidden_field :concert_id, :value => @concert.id %>
+  <%= form.hidden_field :concert_detail_id, :value => @concert_detail.id %>
 
   <div class="field">
     <%= form.label :number_of_seats ,"購入席数"%>
