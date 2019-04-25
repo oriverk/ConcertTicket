@@ -13,10 +13,14 @@
   </thead>
 
   <tbody>
-    <td><%= @user.name %></td>
-    <td><%= @user.email %></td>
-    <td><%= @user.point %>Pt</td>
-    <td><%= link_to '登録情報変更', edit_user_path(@user), class:"btn btn-outline-info" %><td>
+    <td><%= current_user.name %></td>
+    <td><%= current_user.email %></td>
+    <% if current_user.point %>
+    <td><%= current_user.point %>Pt</td>
+    <% else %>
+    <td>所持ポイントはありません</td>
+    <% end %>
+    <td><%= link_to '登録情報変更', edit_user_path(current_user), class:"btn btn-outline-info" %><td>
   </tbody>
 </table>
 

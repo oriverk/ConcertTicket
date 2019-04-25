@@ -8,7 +8,6 @@
       <th>所持ポイント数</th>
     </tr>
   </thead>
-
   <tbody>
     <td><%= current_user.name %></td>
     <td><%= current_user.email %></td>
@@ -44,7 +43,6 @@
   <% if @payment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(payment.errors.count, "error") %> prohibited this concert from being saved:</h2>
-
       <ul>
       <% payment.errors.full_messages.each do |message| %>
         <li><%= message %></li>

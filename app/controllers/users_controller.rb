@@ -4,13 +4,7 @@ require 'active_support/all'
 class UsersController < ApplicationController
 
   def index
-    # if current_user.admin?
-    # @users = User.all
-    # else
-    @user = User.find(current_user.id)
     @sales = Sale.where(user_id: current_user.id)
-    # @payment = Payment.where(current_user.id)
-    # end
   end
 
   def show
@@ -59,27 +53,22 @@ class UsersController < ApplicationController
     end
   end
 
-  def payment
-    @payment = Payment.new
+  # confirm = new
+  def confirm
     @concert = Concert.find(params[:concert_id])
     @sale = Sale.find(params[:sale_id])
+    @payment = Payment.new
+    logger.debug "1--------payment"
   end
 
-  def pay
+  # payment = create
+  def payment
     @sale = Sale.find(params[:sale_id])
-    @sale.used_point = @used_point
+    @sale.used_point = params['used_point'].to_i
+    logger.debug "2----------pay"
     @sale.save
-
-# 決済額 = 販売額 -使用ポイント
-# 追加ポイント = 決済額 * 割合
-    #@amount = @sale.amount - @sale.used_point.to_i
-    #if @amount >= 20000
-     # @add_point = @amount * 0.03
-      #elsif @amount >= 10000
-       # @add_point = @amount * 0.02
-      #else @add_point = @amount * 0.01
-    #end
-    @payment = Payment.new(sale_id: @sale.id , date: Date.current)
+    amount = @sale.amount - @sale.used_point
+    @payment = Payment.new(sale_id: @sale.id , date: Date.current, amount: amount)
 
     respond_to do |format|
       if @payment.save!

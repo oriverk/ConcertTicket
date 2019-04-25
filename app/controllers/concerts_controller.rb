@@ -14,11 +14,11 @@ class ConcertsController < ApplicationController
     @concert = Concert.new
   end
 
-  def edit; end
+  def edit
+  end
 
   def create
     @concert = Concert.new(concert_params)
-
     respond_to do |format|
       if @concert.save
         format.html { redirect_to @concert, notice: '新規作成しました' }
