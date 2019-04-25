@@ -2,6 +2,7 @@
 
 require 'active_support/all'
 class UsersController < ApplicationController
+    before_action :authenticate_user!
 
   def index
     @sales = Sale.where(user_id: current_user.id)
@@ -58,14 +59,12 @@ class UsersController < ApplicationController
     @concert = Concert.find(params[:concert_id])
     @sale = Sale.find(params[:sale_id])
     @payment = Payment.new
-    logger.debug "1--------payment"
   end
 
   # payment = create
   def payment
     @sale = Sale.find(params[:sale_id])
     @sale.used_point = params['used_point'].to_i
-    logger.debug "2----------pay"
     @sale.save
 
     @amount = @sale.amount - @sale.used_point
@@ -88,7 +87,6 @@ class UsersController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:name, :email)

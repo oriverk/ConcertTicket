@@ -3,7 +3,6 @@
   <%= link_to 'マイページ',  users_path %>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   <% if current_user.admin? %>
-    <%= link_to '購入(開発用リンク)', sales_path %>
     <%= link_to '管理者', admins_path %>
   <% end %>
 <% else %>

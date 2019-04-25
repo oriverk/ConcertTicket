@@ -17,10 +17,6 @@
         <td><%= concert.infomation %></td>
         <td><%= concert.date %></td>
         <td><%= link_to '詳細/申込', concert , class:"btn btn-outline-primary"%></td>
-        <% if current_user.admin? %>
-          <td><%= link_to '編集', edit_concert_path(concert) , class:"btn btn-outline-info"%></td>
-          <td><%= link_to '削除', concert, method: :delete, data: { confirm: '本当によろしいですか？' } , class:"btn btn-outline-danger"%></td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -28,6 +24,3 @@
 
 <br>
 
-<% if current_user.admin? %>
-  <%= link_to '新規作成', new_concert_path  ,class:"btn" %>
-<% end %>

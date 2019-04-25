@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<% if current_user.admin? %>
 <h1>会員一覧</h1>
 
 <table class= "table table-hover">
@@ -22,5 +22,6 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 
 

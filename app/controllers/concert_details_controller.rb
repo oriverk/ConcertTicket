@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ConcertDetailsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_concert_detail, only: %i[show edit update destroy]
 
   # GET /concert_details

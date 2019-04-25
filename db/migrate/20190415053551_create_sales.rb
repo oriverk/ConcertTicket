@@ -10,7 +10,7 @@ class CreateSales < ActiveRecord::Migration[5.2]
       t.datetime :date
       t.integer :amount
       t.date :payment_deadline
-      t.integer :used_point
+      t.integer :used_point, default: 0
 
       t.timestamps
     end
