@@ -7,4 +7,6 @@ class Sale < ApplicationRecord
 
   validates :number_of_seats, presence: true
   validates :number_of_seats, numericality: { less_than_or_equal_to: 4 }
+
+  
 end
