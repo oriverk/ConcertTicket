@@ -67,8 +67,19 @@ class UsersController < ApplicationController
     @sale.used_point = params['used_point'].to_i
     logger.debug "2----------pay"
     @sale.save
+
     amount = @sale.amount - @sale.used_point
-    @payment = Payment.new(sale_id: @sale.id , date: Date.current, amount: amount)
+    added_point = 0
+    if amount >= 20000
+      added_point = amount * 0.03
+    elsif amount >= 10000
+      added_point = amount * 0.02
+    else added_point = amount * 0.01
+    end
+
+    @payment = Payment.new(sale_id: @sale.id , date: Date.current, amount: amount, added_point: added_point.floor)
+    current_user.point = current_user.point + added_point - @sale.used_point
+    current_user.save
 
     respond_to do |format|
       if @payment.save!

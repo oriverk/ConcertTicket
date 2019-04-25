@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :name
       t.string :email
-      t.integer :point
+      t.integer :point, default: 0
 
       t.timestamps null: false
     end
