@@ -3,13 +3,12 @@
 class ConcertsController < ApplicationController
   before_action :set_concert, only: %i[show edit update destroy]
   before_action :set_concert_detail, only: %i[show edit update destroy]
-  
+
   def index
     @concerts = Concert.all.order(:date, :id)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @concert = Concert.new

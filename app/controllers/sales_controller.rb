@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/all'
 
 class SalesController < ApplicationController
@@ -10,17 +12,17 @@ class SalesController < ApplicationController
     @concert = Concert.find(params[:concert_id])
     @concert_detail = ConcertDetail.find(params[:concert_detail_id])
   end
-  
+
   def create
     @concert = Concert.find(concert_params)
     @concert_detail = ConcertDetail.find(concert_detail_params)
-    @amount = @concert_detail.price * params["sale"]["number_of_seats"].to_i
-    
-    @sale = Sale.new(concert_id:@concert.id, user_id:current_user.id, grade:@concert_detail.grade , number_of_seats:params["sale"]["number_of_seats"].to_i, date:Date.current, amount:@amount , payment_deadline:Date.current+7.day)
+    @amount = @concert_detail.price * params['sale']['number_of_seats'].to_i
+
+    @sale = Sale.new(concert_id: @concert.id, user_id: current_user.id, grade: @concert_detail.grade, number_of_seats: params['sale']['number_of_seats'], date: Date.current, amount: @amount, payment_deadline: Date.current + 7.day)
 
     respond_to do |format|
       if @sale.save!
-        format.html { redirect_to @sale, notice: '申込申請されました' }
+        format.html { redirect_to controller:'users',action:'index', notice: '申込申請されました' }
         format.json { render :index, status: :created, location: @sale }
       else
         format.html { render :new }
@@ -31,13 +33,13 @@ class SalesController < ApplicationController
 
   private
 
-    def concert_params
-     params.require(:sale)["concert_id"]
-    end
+  def concert_params
+    params.require(:sale)['concert_id']
+  end
 
-    def concert_detail_params
-      params.require(:sale)["concert_detail_id"]
-    end
+  def concert_detail_params
+    params.require(:sale)['concert_detail_id']
+  end
 end
 
 # Parameters: {"utf8"=>"✓", "authenticity_token"=>"wa2iEFUFSsCQ9ZImeiyPO+kbBJ9AIs63//OBPXxBkjKR/vMJ0rf7EHW2/GeAh65eJXTl0SnJmLyK0CFxiWrfcQ==", "sale"=>{"concert_id"=>"12", "concert_detail_id"=>"34","number_of_seats"=>"1"}, "commit"=>"Create Sale"}
@@ -55,4 +57,4 @@ end
 # case when 決済額 >= 20000 thn floor (決済額 * 0.03)
 # when 決済額 >=10000 then floor (決済額 * 0.02)
 # else floor(決済額 * 0.01) end )
-# where datediff(now(), 決済日) =1 
+# where datediff(now(), 決済日) =1
