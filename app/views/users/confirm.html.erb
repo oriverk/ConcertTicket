@@ -34,7 +34,7 @@
     <td><%= @concert.date %></td>
     <td><%= @sale.grade %></td>
     <td><%= @sale.number_of_seats %></td>
-    <td><%= @sale.amount %></td>
+    <td>￥<%= @sale.amount %>円</td>
     <td><%= @sale.payment_deadline %></td>
   </tbody>
 </table>
@@ -52,6 +52,7 @@
   <% end %>
 
   <%= form.hidden_field :sale_id, :value => @sale.id %>
+  <%= form.hidden_field :concert_id, :value => @concert.id%>
 
   <div class="field">
     <%= form.label :used_point ,"使用するポイント"%>

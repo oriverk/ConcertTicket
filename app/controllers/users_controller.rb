@@ -8,11 +8,9 @@ class UsersController < ApplicationController
     @sales = Sale.where(user_id: current_user.id)
   end
 
-  def show
-  end
+  def show;end
 
-  def edit
-
+  def edit;
   end
 
   def new
@@ -56,33 +54,42 @@ class UsersController < ApplicationController
 
   # confirm = new
   def confirm
-    @concert = Concert.find(params[:concert_id])
-    @sale = Sale.find(params[:sale_id])
     @payment = Payment.new
+    @sale = Sale.find(params[:sale_id])
+    @concert = Concert.find(params[:concert_id])
   end
+# transactionの前にbegin rescure
+# なぜused_pointをオブジェクトに保存したのか、フォームからとって来いよ
+# elseの後に@concert = Concert.find等をして、それからrender
+#　ただし、paramの中は空なので、hiddenで異常系用に持ってくる
 
   # payment = create
   def payment
-    @sale = Sale.find(params[:sale_id])
-    @sale.used_point = params['used_point'].to_i
-    @sale.save
+      @sale = Sale.find(sale_params)
+      #@sale.used_point = params['used_point'].to_i
+      @sale.save!
+      # 決済額
+      @pay_amount = @sale.amount - @sale.used_point
+      @payment = Payment.new(sale_id: @sale.id , date: Date.current, amount: @pay_amount, added_point: add_point.floor)
 
-    @amount = @sale.amount - @sale.used_point
-    
-    @payment = Payment.new(sale_id: @sale.id , date: Date.current, amount: @amount, added_point: add_point.floor)
-    current_user.point = current_user.point + add_point - @sale.used_point
-    current_user.save
-
-    respond_to do |format|
-      if @payment.save!
-        format.html { redirect_to controller:'users',action:'index', notice: "支払いが完了しました。" }
-        format.json { render :index, status: :created, location: @payment }
-      else
-        format.html { render :new }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @sale.used_point > current_user.point
+          format.html { render :new}
+          @sale = Sale.find(params[:sale_id])
+          @concert = Concert.find(params[:concert_id])
+        elsif  @payment.save!
+          current_user.point = current_user.point - @sale.used_point + @payment.added_point
+          current_user.save!
+          # この中にsave全部突っ込めばいいんじゃね？
+          format.html { redirect_to controller:'users',action:'index', notice: "支払いが完了しました。" }
+          format.json { render :index, status: :created, location: @payment }
+        else
+          format.html { redirect_to controller:'users',action:'index', notice: "保存失敗。" }
+          format.json { render :index, status: :created, location: @payment }
+        end
       end
-    end
   end
+
 
   private
 
@@ -92,13 +99,17 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email)
   end
 
+  def sale_params
+    params.require(:sale_id)
+  end
+
   def add_point
-    if @amount >= 20000
-      return @amount * 0.03
-    elsif @amount >= 10000
-      return @amount * 0.02
+    if @pay_amount >= 20000
+      return @pay_amount * 0.03
+    elsif @pay_amount >= 10000
+      return @pay_amount * 0.02
     else 
-      return @amount * 0.01
+      return @pay_amount * 0.01
     end
   end
 end

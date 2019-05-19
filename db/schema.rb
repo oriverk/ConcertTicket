@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_04_18_024626) do
     t.bigint "sale_id"
     t.datetime "date"
     t.integer "amount"
-    t.integer "added_point"
+    t.integer "added_point", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sale_id"], name: "index_payments_on_sale_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_04_18_024626) do
     t.datetime "date"
     t.integer "amount"
     t.date "payment_deadline"
-    t.integer "used_point"
+    t.integer "used_point", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["concert_id"], name: "index_sales_on_concert_id"

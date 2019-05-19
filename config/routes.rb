@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/', to: 'tops#top'
   devise_for :users
   root 'concerts#index'
   resources :concerts
-  get '/users/payment' ,to: 'users#confirm' #payment = new 
-  post 'users/payment' ,to: 'users#payment'
+  get '/users/confirm' ,to: 'users#confirm'
+  post 'users/confirm' ,to: 'users#payment'
   resources :users
-  
   resources :concert_details
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :admins
   resources :sales
-  
 end
