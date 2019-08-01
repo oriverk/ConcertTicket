@@ -75,5 +75,5 @@ gem 'kaminari'
 
 # open mails with tab
 group :development do
-  gem "letter_opener"
+  gem 'letter_opener'
 end

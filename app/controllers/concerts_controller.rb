@@ -14,8 +14,7 @@ class ConcertsController < ApplicationController
     @concert = Concert.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @concert = Concert.new(concert_params)
