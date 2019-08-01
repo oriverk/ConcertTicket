@@ -1,10 +1,12 @@
+  <p id="notice"><%= notice %></p>
+
   <h1>お支払いページ</h1>
 
 <table class= "table table-hover">
   <thead class="thead-light">
     <tr>
-      <th>氏名</th>
-      <th>メールアドレス</th>
+      <th>氏名：後で非表示化</th>
+      <th>メールアドレス：後で非表示化</th>
       <th>所持ポイント数</th>
     </tr>
   </thead>
@@ -34,7 +36,7 @@
     <td><%= @concert.date %></td>
     <td><%= @sale.grade %></td>
     <td><%= @sale.number_of_seats %></td>
-    <td>￥<%= @sale.amount %>円</td>
+    <td><%= @sale.amount %>円</td>
     <td><%= @sale.payment_deadline %></td>
   </tbody>
 </table>
@@ -42,9 +44,9 @@
 <%= form_with(model: @users , local: true) do |form| %>
   <% if @payment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(payment.errors.count, "error") %> prohibited this concert from being saved:</h2>
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this concert from being saved:</h2>
       <ul>
-      <% payment.errors.full_messages.each do |message| %>
+      <% @payment.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

@@ -1,10 +1,19 @@
-<%= link_to 'コンサート', concerts_path %>
-<% if user_signed_in? %>
-  <%= link_to 'マイページ',  users_path %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-  <% if current_user.admin? %>
-    <%= link_to '管理者', admins_path %>
-  <% end %>
-<% else %>
-  <%= link_to 'ログイン', '/users/sign_in' %>
-<% end %>
+<header>
+  <div class="healer-left">
+    <a href="/">Rチケ</a>
+  </div>
+  <div class="header-right">
+    <ul>
+      <li><%= link_to 'コンサート', concerts_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to 'マイページ',  users_path %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <% if current_user.admin? %>
+            <li><%= link_to '管理者', admins_path %></li>
+          <% end %>
+      <% else %>
+        <li><%= link_to 'ログイン', '/users/sign_in' %></li>
+      <% end %>
+    </ul>
+  </div>
+</header>

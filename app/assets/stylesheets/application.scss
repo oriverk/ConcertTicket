@@ -16,3 +16,30 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+ul{
+  list-style-type: none
+}
+a{
+  font-size:20px;
+}
+
+/* header */
+header{
+  width:100%;
+  background-color: orange;
+}
+.header-left a{
+  float:left;
+}
+.header-right{
+  float:right;
+}
+.header-right li{
+  float:left;
+}
+
+/* footer */
+footer{
+  background-color: orange;
+}
