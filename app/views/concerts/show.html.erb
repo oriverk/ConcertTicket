@@ -25,7 +25,8 @@
       <th>席種</th>
       <th>販売数</th>
       <th>価格</th>
-      <th colspan= "3">
+      <th>仮ボタン</th>
+      <th>申込数(開発)</th>
     </tr>
   </thead>
 
@@ -36,6 +37,7 @@
       <th><%= concert_detail.capacity %></th>
       <th><%= concert_detail.price %></th>
       <th><%= link_to '購入申込み', new_sale_path(concert_id: @concert.id, concert_detail_id: concert_detail.id), class: "btn btn-outline-info" %></th>
+      <th><%= %>席が既に申込されています</th>
     </tr>
     <% end %>
   </tbody>

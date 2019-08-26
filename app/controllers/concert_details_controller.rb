@@ -8,6 +8,7 @@ class ConcertDetailsController < ApplicationController
   # GET /concert_details.json
   def index
     @concert_details = ConcertDetail.all
+    @sold_sest = 
   end
 
   # GET /concert_details/1

@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   def index
     @sales = Sale.where(user_id: current_user.id)
-    @payments = Payment.where(user_id: current_user.id)
   end
 
   def show; end
