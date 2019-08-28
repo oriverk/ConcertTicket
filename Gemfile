@@ -77,3 +77,7 @@ gem 'kaminari'
 group :development do
   gem 'letter_opener'
 end
+
+# Batch processing
+# manage corntab
+gem 'whenever', require: false
