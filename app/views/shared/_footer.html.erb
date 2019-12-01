@@ -1,29 +1,31 @@
-<br>
-<br>
-<br>
-<br>
-<footer>
-  <div class = "footer-main">
-    <div class = "footer-left"></div>
-      <div></div>
-      <div class = "footer-contents">
-        <%= link_to 'コンサート', concerts_path %>
-        <% if user_signed_in? %>
-          <%= link_to 'マイページ',  users_path %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          <% if current_user.admin? %>
-            <%= link_to '管理者', admins_path %>
-          <% end %>
-        <% else %>
-          <%= link_to 'ログイン', 'users/sign_in' %>
-        <% end %>
-      </div>
-    <div class = "footer-right"></div>
-  </div>
-  <div class= "footer-bottom">
-      <div class= "footer-logo">
-        <img src="#" alt="concert-ticket">
-        <p class= "copyright">© 2019 ●●●</p>
-      </div>
-  </div>
-</footer>
+<div class="footer top">
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" href="/">ホーム</a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link" href="/concerts">コンサート</a>
+  </li>
+  <% unless user_signed_in? %>
+    <li class="nav-item">
+      <a class="nav-link" href="/users/sign_in">ログイン</a>
+    </li>
+  <% else %>
+    <li class="nav-item">
+    <a class="nav-link" href="/users">マイページ</a>
+  </li>
+    <% if current_user.admin%>
+    <li class="nav-item">
+      <a class="nav-link" href="/admins">admin</a>
+    </li>
+    <% end %>
+  <% end %>
+  <li class="nav-item">
+    <a class="nav-link" href="/privacy">プライバシー</a>
+  </li>
+</ul>
+</div>
+<div class="footer bottom">
+  <ul class="nav justify-content-center"><li class="copyright">© 2019 ●●●</li></ul>
+</div>

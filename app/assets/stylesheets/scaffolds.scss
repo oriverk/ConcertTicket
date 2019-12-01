@@ -1,10 +1,105 @@
+@import "./users";
+@import "./concerts";
+@import "./concert_details";
+@import "./admins";
+
+// sm << tab == pc 1024 <<
+// .box {
+//   @include tab {
+//     background-color: blue;
+//   };
+// }
+
+// <body>
+//   <div class="body-container">
+//     <header></header>
+//     <div class="notification"></div>
+//     <div class="yield">
+//       <div class="nav-container"></div>
+//       <div class="main-container"</div>
+//     </div>
+//     <footer></footer> => become sidebar when larger than 960px
+//   </div>
+// </body> 
+
+$tab: 960px; 
+@mixin tab {
+  @media (min-width: ($tab)) {
+    @content;
+  }
+}
+
 body {
-  background-color: #fff;
   color: #333;
-  margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  }
+
+
+.body-container{
+  background-color: #fff;
+  border:solid 1px grey;
+  border-top:none;
+  width:100%;
+  margin:0 auto;
+  height:100vh;
+  
+}
+header{
+  margin-bottom:20px;
+  width:auto;
+}
+.navbar-nav{
+  float:left;
+  .nav-item.active{
+    float:right;
+  }
+}
+.notificatoin{
+  margin-bottom:10px;
+  width:auto;
+}
+
+.yield{
+  @include tab{
+    display:flex;
+    height:100%;
+  }
+}
+
+.nav-container{
+  display:none;
+  @include tab{
+    display: inline;
+    width:260px;
+    border-right:solid 1px #000;
+    
+  }
+  .setting{
+    margin:10px 0 10px 0;
+    border-top:solid 1px #000;
+  }
+}
+
+
+.main-container{
+  width:auto;
+  margin:0 10px 10px 10px;
+  border-bottom:solid 2px #000;
+  flex:1;
+  @include tab{
+    flex:1;
+  }
+}
+
+.footer{
+  width:auto;
+  padding:0 10px;
+  height:50px;
+  @include tab{
+    display:none;
+  }
 }
 
 p, ol, ul, td {

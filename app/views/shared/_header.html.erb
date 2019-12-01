@@ -1,19 +1,26 @@
-<header>
-  <div class="healer-left">
-    <a href="/">Rチケ</a>
-  </div>
-  <div class="header-right">
-    <ul>
-      <li><%= link_to 'コンサート', concerts_path %></li>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Rチケ</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
       <% if user_signed_in? %>
-        <li><%= link_to 'マイページ',  users_path %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <% if current_user.admin? %>
-            <li><%= link_to '管理者', admins_path %></li>
-          <% end %>
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/sign_out">ログアウト</a>
+      </li>
+      <% if current_user.admin %>
+          <li class="nav-item active">
+            <a class="nav-link" href="/admins">admin<span class="sr-only">(current)</span></a>
+          </li>
+        <% end %>  
       <% else %>
-        <li><%= link_to 'ログイン', '/users/sign_in' %></li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/sign_in">ログイン</a>
+      </li>
       <% end %>
     </ul>
   </div>
-</header>
+</nav>
+
+

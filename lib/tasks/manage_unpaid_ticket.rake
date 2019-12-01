@@ -7,10 +7,10 @@
 #     records_over_deadline = Sale.where(payment_deadline: Date.current - 1.days)
 #     records_over_payment_deadline.each do |record|
 #       # 該当recordのidが決済表テーブルに存在しなかったら
-# 	    if Payment.find(id: record.id).nil?
+#       if Payment.find(id: record.id).nil?
 #         Payment.new(sale: sale.id, date: Null, payment: -1)
 #         Payment.save
-# 	    end
+#       end
 #     end
-#   end 
+#   end
 # end

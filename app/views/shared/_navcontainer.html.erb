@@ -1,0 +1,29 @@
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link" href="/">ホーム</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/concerts">コンサート</a>
+    </li>
+    <% unless user_signed_in? %>
+    <li class="nav-item">
+      <a class="nav-link" href="/users/sign_in">ログイン</a>
+    </li>
+    <% else %>
+    <div class="setting">
+    <li class="nav-item">
+      <a class="nav-link disable" href="#">設定</a>
+    <li class="nav-item">
+      <%= link_to 'マイページ', user_path(current_user.id), class:"nav-link"%>
+    </li>
+    <% if current_user.admin%>
+    <li class="nav-item">
+      <a class="nav-link" href="/admins">admin</a>
+    </li>
+    <% end %>
+    <% end %>
+    <li class="nav-item">
+      <a class="nav-link" href="/privacy">プライバシー</a>
+    </li>
+    </div>
+  </ul>

@@ -7,13 +7,32 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    
   </head>
 
   <body>
-	  <%= render :partial => 'shared/header' %>
-    <%= yield %>
-    <%= render :partial => 'shared/footer' %>
+    <div class="body-container">
+      <header>
+        <%= render :partial => 'shared/header' %>
+      </header>
+      <div class="notification">
+        <%- if notice.present? %>
+        <p id="notice" class="alert alert-info" role="alert"><%= notice %></p>
+        <% end %>
+        <%- if alert.present? %>
+        <p id="alert" class="alert alert-danger" role="alert"><%= alert %></p>
+        <% end %>
+      </div>
+      <div class="yield">
+        <div class="nav-container">
+          <%= render :partial => 'shared/navcontainer'%>
+        </div>
+        <div class="main-container">
+          <%= yield %>
+        </div>
+      </div>
+      <footer>
+        <%= render :partial => 'shared/footer' %>
+      </footer>
+    </div>
   </body>
 </html>

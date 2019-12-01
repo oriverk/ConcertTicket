@@ -3,12 +3,17 @@
 require 'active_support/all'
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: %i[edit update destroy]
 
-  def index
-    @sales = Sale.where(user_id: current_user.id)
+  # def index
+  # end
+
+  def show
   end
 
-  def show; end
+  def purchase
+    @sales = Sale.where(user_id: current_user.id)
+  end
 
   def edit; end
 
@@ -95,6 +100,10 @@ end
 
   # Use callbacks to share common setup or constraints between actions.
   # Never trust parameters from the scary internet, only allow the white list through.
+  def set_user
+    @user = User.find(current_user.id)
+  end
+  
   def user_params
     params.require(:user).permit(:name, :email)
   end

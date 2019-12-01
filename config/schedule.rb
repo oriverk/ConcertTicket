@@ -18,7 +18,7 @@
 # end
 
 every 1.day, at: `0:0 am` do
-  runner 
+  runner
 end
 
 # Learn more: http://github.com/javan/whenever

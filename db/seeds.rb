@@ -1,7 +1,7 @@
 require 'active_support/all'
 
 # 管理者
-User.create(name: 'おりばー', email: 'se.sterroristalqaeda@gmail.com', password: 'riverfield', admin:true)
+User.create(name: 'おりばー', email: 'se.sterroristalqaeda@gmail.com', password: 'riverfield', admin: true)
 
 # 一般ユーザを10作成。
 10.times do |i|
@@ -28,8 +28,8 @@ artists = []
   who_join = artists.shuffle.take(rand(1..3)).join('、')
 
   # 例："雅楽コンサート in　東京　出演：BZZ, MON"
-  infomation = "#{concert_name.sample}コンサート in #{local.sample} 出演：#{who_join}"
-  Concert.create(infomation: infomation, date: s.strftime('%Y/%m/%d'))
+  information = "#{concert_name.sample}コンサート in #{local.sample} 出演：#{who_join}"
+  Concert.create(information: information, date: s.strftime('%Y/%m/%d'))
 
   concert = Concert.find(n)
   (0..2).each do |i|
