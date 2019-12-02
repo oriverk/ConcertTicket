@@ -1,0 +1,80 @@
+<%= render 'shared/admin-nav' %>
+
+<div class="admin-main">
+  <div class="user-information">
+    <h1>会員情報</h1>
+    <table class= "table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>表示名</th>
+          <th>姓</th>
+          <th>名</th>
+          <th>メール</th>
+          <th>所持P</th>
+          <th>登録日</th>
+          <th>更新日</th>
+          <th>申込数</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= @user.name %></td>
+            <td>山田</td>
+            <td>花子</td>
+            <td><%= @user.email %></td>
+            <td><%= @user.point %></td>
+            <td><%= @user.created_at.strftime("%Y.%m.%d")  %></td>
+            <td><%= @user.updated_at.strftime("%Y.%m.%d")  %></td>
+            <td><%= @sales.count %></td>
+            <td><%= link_to 'Ban(desabled)', "#", class:"actions btn btn-outline-dark"%></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="actions">
+    <%= link_to '戻る', admin_users_path ,class:"btn btn-outline-dark btn-block btn-sm"%>
+  </div>
+  <div class="history">
+    <h1>購入情報</h4>
+    <div class="table">
+      <table class= "table table-hover">	
+        <thead class="thead-light">	
+          <tr>
+            <th></th>
+            <th>コンサート</th>	
+            <th>開催日</th>
+            <th>決済</th>
+            <th>決済額</th>
+            <th>使用P</th>
+            <th>獲得P</th>
+        </thead>	
+        <tbody>
+            <% if @sales %>
+            <% @sales.each do |sale|%>	
+              <tr>
+                <td><%= link_to "詳細", detail_admin_user_path(sale:sale.id), class:"btn btn-outline-dark btn-sm"%></td>
+                <td><%= Concert.find(sale.concert_id).information %></td>	
+                <td><%= Concert.find(sale.concert_id).date.strftime("%Y.%m.%d") %></td>
+                <% if Payment.find_by(sale_id:sale.id) %>
+                <td><%= Payment.find_by(sale_id:sale.id).date.strftime("%Y.%m.%d")%></td>
+                <td><%= Payment.find_by(sale_id:sale.id).amount%></td>
+                <td><%= sale.used_point %></td>
+                <td><%= Payment.find_by(sale_id:sale.id).added_point %></td>	
+                <% else %>
+                <td><strong class="unpaid">未決済</strong></td>
+                <td>期限：<%= sale.payment_deadline %></td>
+                <% end %>
+              </tr>
+            <% end %>
+            <% else %>
+            <tr><td>コンサート申込／購入履歴はありません</td></th> 
+            <% end %>
+        </tbody>	
+      </table>
+    </div>
+  </div>
+  <div class="actions">
+    <%= link_to '戻る', admin_users_path ,class:"btn btn-outline-dark btn-block btn-sm"%>
+  </div>
+</div>

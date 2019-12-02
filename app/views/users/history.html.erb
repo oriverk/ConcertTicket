@@ -1,0 +1,33 @@
+<%= render 'shared/user-nav' %>
+<div class="user-main">
+  <div class="history">
+    <h1>購入情報</h4>
+    <div class="table">
+      <table class= "table table-hover">	
+        <thead class="thead-light">	
+          <tr>	
+            <th>コンサート</th>	
+            <th>開催日</th>	
+            <th colspan="2"></th>	
+            <th></th>		
+        </thead>	
+        <tbody>	
+          <% @sales.each do |sale|%>	
+            <tr>	
+              <td><%= Concert.find(sale.concert_id).information %></td>	
+              <td><%= Concert.find(sale.concert_id).date.strftime("%Y年%m月%d日") %></td>
+              <% if Payment.exists?(id: sale.id) %>
+              <td>決済日：<%= Payment.find(sale.id).date.strftime("%Y年%m月%d日")%></td>
+              <td>獲得<%= Payment.find(sale.id).added_point %>Pt</td>	
+               <td colspan="2"><%= link_to '詳細', user_bill_path(sale:sale.id,concert:sale.concert_id) ,class:"btn btn-outline-info btn-block" %>
+              <% else %>
+              <td colspan="2">決済期限：<%= sale.payment_deadline %></td>
+              <td colspan="4"><%= link_to '詳細／決済', user_confirm_path(sale:sale.id,concert:sale.concert_id) ,class:"btn btn-outline-info btn-block" %>
+              <% end %>
+            </tr>	
+            <% end %>	
+        </tbody>	
+      </table>
+    </div>
+  </div>
+</div>

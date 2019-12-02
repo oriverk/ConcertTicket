@@ -1,0 +1,30 @@
+<%= render 'shared/admin-nav' %>
+
+<div class="admin-main">
+  <div class="user-information">
+    <h1>会員一覧</h1>
+    <table class= "table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>氏名</th>
+          <th>メール</th>
+          <th>所持P</th>
+          <th>登録日</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.point %></td>
+            <td><%= user.created_at.strftime("%Y.%m.%d %H:%M")  %></td>
+            <td><%= link_to '詳細', admin_user_path(user.id) , class:"btn btn-outline-primary"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

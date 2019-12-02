@@ -1,0 +1,34 @@
+<%= render 'shared/user-nav' %>
+<div class="user-main">
+<div class="bill">
+    <% if Payment.exists?(id: params[:sale])%>
+    <div class="concert-info">
+      <p>コンサート情報</p>
+      <ul>
+        <li>コンサート名：</li>
+        <li>アーティスト</li>
+        <li>開催日：.strftime("%Y年%m月%d日")</li>
+      </ul>
+    </div>
+    <div class="seat-info">
+      <p>購入席情報</p>
+      <ul>
+        <li>席グレード：</li>
+        <li>席数</li>
+        <li>席単価：円</li>
+        <li>合計購入額：円</li>
+      </ul>
+    </div>
+    <div class="payment-info">
+      <p>決済情報</p>
+      <ul>
+        <li>使用ポイント：</li>
+        <li>決済額</li>
+        <li>獲得ポイント</li>
+      </ul>
+    </div>
+    </div>
+    <% else %>
+    <% end %>
+</div>
+</div>

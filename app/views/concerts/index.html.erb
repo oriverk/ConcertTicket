@@ -15,7 +15,7 @@
     <% @concerts.each do |concert| %>
       <tr>
         <td><%= concert.information %></td>
-        <td><%= concert.date %></td>
+        <td><%= concert.date.strftime("%Y年%m月%d日") %></td>
         <td><%= link_to '詳細/申込', concert , class:"btn btn-outline-primary"%></td>
       </tr>
     <% end %>

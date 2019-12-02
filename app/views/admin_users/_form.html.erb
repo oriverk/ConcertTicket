@@ -1,0 +1,24 @@
+<%= form_with(model: @user, local: true) do |form| %>
+  
+
+<div class="field">
+    <%= form.label :name ,"名前"%>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :email ,"メールアドレス"%>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :password ,"パスワード"%>
+    <%= form.text_field :password %>
+  </div>
+  <div class="field">
+    <%= form.label :admin ,"購入席数"%>
+    <%= form.select :admin, [["一般ユーザ","false"],["管理ユーザ","true"]] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

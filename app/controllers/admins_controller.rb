@@ -6,6 +6,15 @@ class AdminsController < ApplicationController
 
   def index
     @users = User.all
+    @admins = User.where(admin: true)
+  end
+
+  def indexUsers
+    @users = User.all
+  end
+
+  def indexConcerts
+    @concerts = Concert.all
   end
 
   def show; end

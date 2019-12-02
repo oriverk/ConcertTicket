@@ -24,7 +24,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save!
-        format.html { redirect_to controller: 'users', action: 'index', notice: '申込申請されました' }
+        format.html { redirect_to user_confirm_path(user_id:current_user.id, sale:@sale.id,concert:@concert.id), notice: '申込が完了しました。支払期限までに決済をお願いします。' }
         format.json { render :index, status: :created, location: @sale }
       else
         format.html { render :new }

@@ -1,3 +1,6 @@
+ <%= render 'shared/user-nav' %>
+
+<div class="user-main">
 <div class="form-container">
 <%= form_with(model: @user, local: true) do |form| -%>
   <%- if @user.errors.any? -%>
@@ -11,12 +14,12 @@
   </div>
   <%- end -%>
   <div class="setting-wrapper">
-    <h1>Account Setting</h1><br>
+    <h1>登録情報変更</h1><br>
     <div class="field input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">名前</span>
       </div>
-      <%= form.text_field :name, placeholder: "not null, 50 characters max." , autofocus: true, autocomplete: "name", class:"form-control" -%>
+      <%= form.text_field :name, placeholder: "" , autofocus: true, autocomplete: "name", class:"form-control" -%>
     </div>
     <div class="actions">
       <%= form.submit "更新する",class:"btn btn-outline-dark btn-block"-%>
@@ -26,5 +29,6 @@
 
 <div class="actions">
 <%= link_to "パスワードとメールアドレスの変更はこちら", edit_user_registration_path , class:"btn btn-outline-dark" -%>
+</div>
 </div>
 </div>

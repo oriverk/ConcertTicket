@@ -39,8 +39,6 @@ body {
 
 .body-container{
   background-color: #fff;
-  border:solid 1px grey;
-  border-top:none;
   width:100%;
   margin:0 auto;
   height:100vh;
@@ -72,9 +70,9 @@ header{
   display:none;
   @include tab{
     display: inline;
-    width:260px;
+    width:200px;
     border-right:solid 1px #000;
-    
+    text-align:center;
   }
   .setting{
     margin:10px 0 10px 0;
@@ -86,7 +84,6 @@ header{
 .main-container{
   width:auto;
   margin:0 10px 10px 10px;
-  border-bottom:solid 2px #000;
   flex:1;
   @include tab{
     flex:1;
@@ -176,4 +173,48 @@ div {
 
 label {
   display: block;
+}
+
+// container
+// for users
+div.user-nav{
+  margin-bottom:10px;
+  border-bottom:solid 1px #000;
+  @include tab{
+  width:200px;
+  height:100%;
+  float:left;
+  border-right:solid 1px red;
+  text-align:center;
+  }
+}
+
+div.user-main{
+  @include tab{
+  width:auto;
+  float:left;
+  padding-left:10px;
+  }
+}
+
+// for admins(admin+ admin_users+ admin_concerts
+div.admin-nav{
+  margin-bottom:10px;
+  border-bottom:solid 1px #000;
+  @include tab{
+  width:200px;
+  height:100%;
+  float:left;
+  border-right:solid 1px red;
+  text-align:center;
+  }
+
+}
+
+div.admin-main{
+  @include tab{
+  width:auto;
+  float:left;
+  padding-left:10px;
+  }
 }

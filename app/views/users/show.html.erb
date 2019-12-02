@@ -1,19 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<div class="user-nav">
-<ul class="nav flex-column">
-  <li class="nav-item">
-    <%= link_to '登録情報', user_path(current_user.id), class:"nav-link" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to '購入情報', users_purchase_path, class:"nav-link" %>
-  </li>
-</ul>
-</div>
-
-<hr>
+<%= render 'shared/user-nav' %>
 
 <div class="user-main">
+<div class="user-info">
 <ul class="nav flex-column">
   <li class="nav-item">
    <%= link_to "名前：#{current_user.name}", edit_user_path, class:"nav-link" %>
@@ -31,4 +19,5 @@
    <%= link_to '退会する', @user, method: :delete, data: { confirm: '本当によろしいですか？' } , class:"btn btn-outline-danger" %>
   </li>
 </ul>
+</div>
 </div>

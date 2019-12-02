@@ -1,0 +1,65 @@
+<%= render 'shared/admin-nav' %>
+
+<div class="admin-main">
+  <div class="history">
+    <h1>購入詳細情報</h4>
+    <div class="table">
+      <table class= "table table-hover">	
+        <tr>
+          <th>コンサート</th>
+          <td><%= @concert.information %></td>
+        </tr>
+        <tr>
+          <th>開催日</th>
+          <td><%= @concert.date.strftime("%Y.%m.%d")%></td>
+        </tr>
+        <tr>
+          <th>申込席</th>
+          <td><%= @sale.grade %></td>
+        </tr>
+        <tr>
+          <th>申込席数</th>
+          <td><%= @sale.number_of_seats %>席</td>
+        </tr>
+        <tr>
+          <th>支払予定額</th>
+          <td><%= @sale.amount %></td>
+        </tr>
+        <% unless @payment %>
+        <tr>
+          <th>決済状態</th>
+          <td>未決済</td>
+        </tr>
+        <tr>
+          <th>決済期限</th>
+          <th><%= @sale.payment_deadline %></th>
+        </th>
+        <% else %>
+        <tr>
+          <th>決済状態</th>
+          <td>決済済み</td>
+        </tr>
+        <tr>
+          <th>決済日</th>
+          <th><%= @payment.date.strftime("%Y.%m.%d %H:%M") %></th>
+        </tr>  
+        <tr>
+          <th>決済額</th>
+          <td><%= @payment.amount %>円</td>
+        </tr>
+        <tr>
+          <th>使用ポイント</th>
+          <td><%= @sale.used_point %>Pt</td>
+        </tr>
+        <tr>
+          <th>獲得ポイント</th>
+          <td><%= @payment.added_point %>Pt<td>
+        </tr>
+       <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="actions">
+    <%= link_to '戻る', admin_user_path ,class:"btn btn-outline-dark btn-block btn-sm"%>
+  </div>
+</div>

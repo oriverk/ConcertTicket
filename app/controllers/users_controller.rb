@@ -3,7 +3,7 @@
 require 'active_support/all'
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[edit update destroy]
+  before_action :set_user, only: %i[show history bill confirm edit update destroy]
 
   # def index
   # end
@@ -11,8 +11,14 @@ class UsersController < ApplicationController
   def show
   end
 
-  def purchase
-    @sales = Sale.where(user_id: current_user.id)
+  def history
+    @sales = Sale.where(user_id: current_user.id).order(payment_deadline: :desc)
+  end
+
+  # history show
+  def bill
+    @sale = Sale.find(params[:sale])
+    @concert = Concert.find(params[:concert])
   end
 
   def edit; end
@@ -51,7 +57,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: '登録情報は削除されました' }
+      format.html { redirect_to users_url, notice: '退会手続きが完了しました。' }
       format.json { head :no_content }
     end
   end
@@ -59,8 +65,8 @@ class UsersController < ApplicationController
   # confirm = new
   def confirm
     @payment = Payment.new
-    @sale = Sale.find(params[:sale_id])
-    @concert = Concert.find(params[:concert_id])
+    @sale = Sale.find(params[:sale])
+    @concert = Concert.find(params[:concert])
   end
 
   # 　ただし、paramの中は空なので、hiddenで異常系用に持ってくる
@@ -71,7 +77,7 @@ class UsersController < ApplicationController
     @payment = Payment.new(sale_id: @sale.id, date: Date.current)
     respond_to do |format|
       if current_user.point < params_used_point
-        format.html { redirect_to controller: 'users', action: 'index', notice: '所持P超過' }
+        format.html { render :confirm, notice: '所持ポイントを越えてポイントを使用しようとしました。' }
       else
         begin
           ActiveRecord::Base.transaction do
@@ -83,14 +89,14 @@ class UsersController < ApplicationController
               @payment.update!(amount: pay_amount, added_point: add_point.floor)
             end
             @user.update!(point: user_point)
-            format.html { redirect_to controller: 'users', action: 'index', notice: '支払い完了' }
+            format.html { redirect_to user_history_path, notice: '支払が完了しました。' }
           end
         rescue StandardError => e
           logger.error e
           logger.error e.backtrace.join("\n")
           @sale = Sale.find(params[:sale_id])
           @concert = Concert.find(params[:concert_id])
-          format.html { render :confirm, notice: 'エラー' }
+          format.html { render :confirm, notice: '決済エラーが起きました。' }
         end
       end
     end

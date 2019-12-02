@@ -1,0 +1,29 @@
+<%= render 'shared/admin-nav' %>
+
+<div class="admin-main">
+<h1>コンサート一覧</h1>
+
+<table class= "table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th>コンサート</th>
+      <th>開催日</th>
+      <th>最終更新</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @concerts.each do |concert| %>
+      <tr>
+        <td><%= concert.information %></td>
+        <td><%= concert.date.strftime("%Y.%m.%d") %></td>
+        <td><%= concert.updated_at.strftime("%Y.%m.%d %H:%M") %>
+        <td><%= link_to "edit","#" , class:"btn btn-outline-primary"%></td>
+        <td><%= link_to 'temp', "#" ,  class:"btn btn-outline-danger"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+</div>
