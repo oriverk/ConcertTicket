@@ -1,5 +1,5 @@
 class AdminUsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users
   # GET /users.json
@@ -17,7 +17,7 @@ class AdminUsersController < ApplicationController
     @sale = Sale.find(params[:sale])
     @user = User.find(@sale.user_id)
     @concert = Concert.find(@sale.concert_id)
-    @payment = Payment.find_by(sale_id:@sale.id)
+    @payment = Payment.find_by(sale_id: @sale.id)
   end
 
   # GET /users/new
@@ -26,8 +26,7 @@ class AdminUsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /users
   # POST /users.json
@@ -70,13 +69,14 @@ class AdminUsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :admin)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :admin)
+  end
 end

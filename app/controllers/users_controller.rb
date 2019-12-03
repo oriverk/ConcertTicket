@@ -3,13 +3,12 @@
 require 'active_support/all'
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[show history bill confirm edit update destroy]
+  before_action :set_user, only: %i[show history bill confirm edit update]
 
   # def index
   # end
 
-  def show
-  end
+  def show; end
 
   def history
     @sales = Sale.where(user_id: current_user.id).order(payment_deadline: :desc)
@@ -19,48 +18,50 @@ class UsersController < ApplicationController
   def bill
     @sale = Sale.find(params[:sale])
     @concert = Concert.find(params[:concert])
+    @payment = Payment.find_by(sale_id:@sale.id)
+    @concert_detail = ConcertDetail.where(concert_id:@concert.id).find_by(grade:@sale.grade)
   end
 
   def edit; end
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
-  def create
-    @user = User.new(user_params)
+  # def create
+  #   @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        NotificationMailer.send_confirm_to_user(@user).deliver
-        redirect_to @user
-        format.html { redirect_to @user, notice: '登録情報が追加されました' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        render 'new'
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @user.save
+  #       NotificationMailer.send_confirm_to_user(@user).deliver
+  #       redirect_to @user
+  #       format.html { redirect_to @user, notice: '登録情報が追加されました' }
+  #       format.json { render :show, status: :created, location: @user }
+  #     else
+  #       render 'new'
+  #       format.html { render :new }
+  #       format.json { render json: @user.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to action: :index, notice: '登録情報が更新されました' }
+        format.html { redirect_to action: :show, notice: '登録情報が更新されました' }
       else
         format.html { render :edit }
       end
     end
   end
 
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: '退会手続きが完了しました。' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @user.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to "/", notice: '退会手続きが完了しました。' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   # confirm = new
   def confirm
@@ -109,7 +110,7 @@ end
   def set_user
     @user = User.find(current_user.id)
   end
-  
+
   def user_params
     params.require(:user).permit(:name, :email)
   end

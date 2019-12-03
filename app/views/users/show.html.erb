@@ -1,23 +1,32 @@
 <%= render 'shared/user-nav' %>
 
 <div class="user-main">
-<div class="user-info">
-<ul class="nav flex-column">
-  <li class="nav-item">
-   <%= link_to "名前：#{current_user.name}", edit_user_path, class:"nav-link" %>
-  </li>
-  <li class="nav-item">
-   <%= link_to "メールアドレス：#{current_user.email}", edit_user_registration_path, class:"nav-link" %>
-  </li>
-  <li class="nav-item">
-   <%= link_to 'パスワード', edit_user_registration_path, class:"nav-link" %>
-  </li>
-  <li class="nav-item">
-   <%= link_to '支払方法', "#", class:"nav-link" %>
-  </li>
-  <li class="nav-item">
-   <%= link_to '退会する', @user, method: :delete, data: { confirm: '本当によろしいですか？' } , class:"btn btn-outline-danger" %>
-  </li>
-</ul>
-</div>
+  <div class="user-info">
+    <h1>登録情報</h1>
+    <div class="table">
+      <table class="table table-hover">
+        <tr>
+          <td><%= link_to "名前：#{@user.name}" , edit_user_path, class:"btn btn-outline-dark btn-block btn-sm"%></td>
+        </tr>
+        <tr>
+          <td><%= link_to "姓：山田", edit_user_path, class:"btn btn-outline-dark btn-block btn-sm"%></td>
+        </tr>
+        <tr>
+          <td><%= link_to "名：花子", edit_user_path, class:"btn btn-outline-dark btn-block btn-sm"%></td>
+        </tr>
+        <tr>
+          <td><%= link_to "メールアドレス：#{@user.email}" , edit_user_registration_path, class:"btn btn-outline-dark btn-block btn-sm" %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "パスワード変更はこちら", edit_user_registration_path, class:"btn btn-outline-dark btn-block btn-sm" %></td>
+        </tr>
+        <tr>
+          <td>お支払方法：temp<td>
+        </tr>
+        <tr>
+          <td><%= link_to '退会する', @user, metdod: :delete, data: { confirm: '本当によろしいですか？' } , class:"btn btn-outline-danger btn-block btn-sm" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

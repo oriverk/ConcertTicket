@@ -8,7 +8,8 @@
           <tr>	
             <th>コンサート</th>	
             <th>開催日</th>	
-            <th colspan="2"></th>	
+            <th>決済</th>
+            <th>獲得ポイント</th>	
             <th></th>		
         </thead>	
         <tbody>	
@@ -16,13 +17,14 @@
             <tr>	
               <td><%= Concert.find(sale.concert_id).information %></td>	
               <td><%= Concert.find(sale.concert_id).date.strftime("%Y年%m月%d日") %></td>
-              <% if Payment.exists?(id: sale.id) %>
-              <td>決済日：<%= Payment.find(sale.id).date.strftime("%Y年%m月%d日")%></td>
-              <td>獲得<%= Payment.find(sale.id).added_point %>Pt</td>	
-               <td colspan="2"><%= link_to '詳細', user_bill_path(sale:sale.id,concert:sale.concert_id) ,class:"btn btn-outline-info btn-block" %>
+              <% if paid = Payment.find_by(sale_id: sale.id) %>
+              <td>決済日：<%= paid.date.strftime("%Y年%m月%d日")%></td>
+              <td>獲得<%= paid.added_point %>Pt</td>	
+               <td><%= link_to '詳細', user_bill_path(sale:sale.id,concert:sale.concert_id) ,class:"btn btn-outline-info btn-block btn-sm" %>
               <% else %>
-              <td colspan="2">決済期限：<%= sale.payment_deadline %></td>
-              <td colspan="4"><%= link_to '詳細／決済', user_confirm_path(sale:sale.id,concert:sale.concert_id) ,class:"btn btn-outline-info btn-block" %>
+              <td>決済期限：<%= sale.payment_deadline %></td>
+              <td><strong>未決済</strong></td>
+              <td><%= link_to '詳細／決済', user_confirm_path(sale:sale.id,concert:sale.concert_id) ,class:"btn btn-outline-info btn-block btn-sm" %>
               <% end %>
             </tr>	
             <% end %>	

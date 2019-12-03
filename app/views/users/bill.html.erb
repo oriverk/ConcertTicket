@@ -1,34 +1,54 @@
 <%= render 'shared/user-nav' %>
 <div class="user-main">
-<div class="bill">
-    <% if Payment.exists?(id: params[:sale])%>
-    <div class="concert-info">
-      <p>コンサート情報</p>
-      <ul>
-        <li>コンサート名：</li>
-        <li>アーティスト</li>
-        <li>開催日：.strftime("%Y年%m月%d日")</li>
-      </ul>
+  <div class="bill">
+    <h1>決済情報<h2>
+    <div class="table">
+      <table class="table table-hover">
+        <tr>
+          <td>コンサート</td>
+          <td><%= @concert.information %></td>
+        </tr>
+        <tr>
+          <td>開催日</td>
+          <td><%= @concert.date.strftime("%Y年%m月%d日")%></td>
+        </tr>
+        <tr>
+          <td>申込席</td>
+          <td>グレード：<%= @sale.grade %></td>
+        </tr>
+        <tr>
+          <td>席単価</td>
+          <td><%= @concert_detail.price %>円<td>
+        </tr>
+        <tr>
+          <td>申込席数</td>
+          <td><%= @sale.number_of_seats %>席</td>
+        </tr>
+        <tr>
+          <td>支払予定額</td>
+          <td><%= @sale.amount %></td>
+        </tr>
+        <tr>
+          <td>決済状態</td>
+          <td>決済済み</td>
+        </tr>
+        <tr>
+          <td>決済日</td>
+          <td><%= @payment.date.strftime("%Y年%m月%d日 %H時%M分") %></td>
+        </tr>  
+        <tr>
+          <td>決済額</td>
+          <td><%= @payment.amount %>円</td>
+        </tr>
+        <tr>
+          <td>使用ポイント</td>
+          <td><%= @sale.used_point %>Pt</td>
+        </tr>
+        <tr>
+          <td>獲得ポイント</td>
+          <td><%= @payment.added_point %>Pt<td>
+        </tr>
+      </table>
     </div>
-    <div class="seat-info">
-      <p>購入席情報</p>
-      <ul>
-        <li>席グレード：</li>
-        <li>席数</li>
-        <li>席単価：円</li>
-        <li>合計購入額：円</li>
-      </ul>
-    </div>
-    <div class="payment-info">
-      <p>決済情報</p>
-      <ul>
-        <li>使用ポイント：</li>
-        <li>決済額</li>
-        <li>獲得ポイント</li>
-      </ul>
-    </div>
-    </div>
-    <% else %>
-    <% end %>
-</div>
+  </div>
 </div>

@@ -5,9 +5,9 @@ require 'active_support/all'
 class SalesController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @sale = Sale.all
-  end
+  # def index
+  #   @sale = Sale.all
+  # end
 
   def new
     @sale = Sale.new
@@ -24,7 +24,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save!
-        format.html { redirect_to user_confirm_path(user_id:current_user.id, sale:@sale.id,concert:@concert.id), notice: '申込が完了しました。支払期限までに決済をお願いします。' }
+        format.html { redirect_to user_confirm_path(user_id: current_user.id, sale: @sale.id, concert: @concert.id), notice: '申込が完了しました。支払期限までに決済をお願いします。' }
         format.json { render :index, status: :created, location: @sale }
       else
         format.html { render :new }
