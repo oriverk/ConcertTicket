@@ -1,6 +1,5 @@
 @import "./users";
 @import "./concerts";
-@import "./concert_details";
 @import "./admins";
 
 // sm << tab == pc 1024 <<
@@ -9,18 +8,6 @@
 //     background-color: blue;
 //   };
 // }
-
-// <body>
-//   <div class="body-container">
-//     <header></header>
-//     <div class="notification"></div>
-//     <div class="yield">
-//       <div class="nav-container"></div>
-//       <div class="main-container"</div>
-//     </div>
-//     <footer></footer> => become sidebar when larger than 960px
-//   </div>
-// </body> 
 
 $tab: 960px; 
 @mixin tab {
