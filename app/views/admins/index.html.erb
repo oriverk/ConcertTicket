@@ -25,8 +25,7 @@
           <td><%= admin.point %></td>
           <td><%= admin.created_at.strftime("%Y.%m.%d %H:%M") %></td>
           <td><%= admin.updated_at.strftime("%Y.%m.%d %H:%M" )%></td>
-          <td><%= link_to "編集", "#", class:"btn btn-outline-dark btn-sm"%></td>
-          <td><%= link_to "削除", "#", class:"btn btn-outline-dark btn-sm"%></td>
+          <td><%= link_to "編集", edit_admin_path(id:admin.id), class:"btn btn-outline-dark btn-sm"%></td>
         </tr>
       </tbody>
       <% end %>

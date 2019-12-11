@@ -18,8 +18,7 @@
         <td><%= concert.information %></td>
         <td><%= concert.date.strftime("%Y.%m.%d") %></td>
         <td><%= concert.updated_at.strftime("%Y.%m.%d %H:%M") %>
-        <td><%= link_to "edit","#" , class:"btn btn-outline-primary"%></td>
-        <td><%= link_to 'temp', "#" ,  class:"btn btn-outline-danger"%></td>
+        <td><%= link_to "コンサート詳細", edit_admin_concert_path(id:concert.id) , class:"btn btn-outline-primary"%></td>
       </tr>
     <% end %>
   </tbody>

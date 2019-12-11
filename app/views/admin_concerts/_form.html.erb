@@ -1,17 +1,50 @@
-<%= form_with(model: admin_concert, local: true) do |form| %>
-  <% if admin_concert.errors.any? %>
+<%= form_with(model: @concert, local: true) do |form| %>
+  <% if @concert.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(admin_concert.errors.count, "error") %> prohibited this admin_concert from being saved:</h2>
+      <h2><%= pluralize(@concert.errors.count, "error") %> prohibited this admin_concert from being saved:</h2>
 
       <ul>
-      <% admin_concert.errors.full_messages.each do |message| %>
+      <% @concert.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+  <div class="table">
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          
+        </tr>
+      </thead> 
+    </table>
+  </div>
+  <div class="field">
+    <%= form.label :name ,"名前"%>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :email ,"メールアドレス"%>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :password ,"パスワード"%>
+    <%= form.text_field :password %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :point, "ポイント"%>
+    <%= form.number_field :point %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+# concert.information
+# concert.date
+
+# concert_detail.grade
+# concert_detail.capacity
+# concert_deital.price

@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   resources :users ,only:[:show, :edit, :update] do 
     get '/history' => 'users#history'
     get '/bill' => 'users#bill'
-    get '/confirm', to: 'users#confirm'
-    post '/confirm', to: 'users#payment'
+    get '/confirm' => 'users#confirm'
+    post '/confirm' => 'users#payment'
   end
-  # resources :concert_details
+  
   resources :sales, only: [:new, :create]
 
   resources :admins
@@ -21,6 +21,5 @@ Rails.application.routes.draw do
       get 'detail'
     end
   end
-
   resources :admin_concerts
 end
